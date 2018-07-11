@@ -5,12 +5,13 @@ const app = new Vue({
   },
   methods: {
     onSubmit() {
-      const path = tokenizer.tokenize(this.tweet);
+      const path = shuffle(tokenizer.tokenize(this.tweet).filter(({ word_type }) => word_type === 'KNOWN'));
       console.log(path);
 
+      const adjective = path.find(({ pos }) => pos === '連体詞' || pos === '形容詞');
       const noun = path.find(({ pos }) => pos === '名詞');
       const verb = path.find(({ pos }) => pos === '動詞');
-      console.log(`${noun.basic_form}が${verb.surface_form}ない人に対して不謹慎だと思います`);
+      console.log(`${adjective.basic_form}${noun.basic_form}が${verb.basic_form}ことができない人に対して不謹慎だと思います`);
     }
   }
 });
@@ -23,3 +24,14 @@ kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict' }).build((err, _tokeniz
   tokenizer = _tokenizer;
   app.tweet = '昔々、あるところにおじいさんとおばあさんがいました';
 });
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * i);
+    const temp = array[i];
+    array[i] = array[randomIndex];
+    array[randomIndex] = temp;
+  }
+
+  return array;
+}
