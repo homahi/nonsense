@@ -1357,7 +1357,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
         <option value="6">6</option>
         <option value="7">7</option>
       </select>
-      <spann class="PollingCardComposer-customDuration--hoursLabel">時間
+      <span class="PollingCardComposer-customDuration--hoursLabel">時間</span>
       <select class="PollingCardComposer-customDuration--hours u-borderUserColorLight" data-duration-target="hours">
         <option value="0">0</option>
         <option value="1">1</option>
@@ -1384,7 +1384,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
         <option value="22">22</option>
         <option value="23">23</option>
       </select>
-      <spann class="PollingCardComposer-customDuration--minutesLabel">分
+      <span class="PollingCardComposer-customDuration--minutesLabel">分</span>
       <select class="PollingCardComposer-customDuration--minutes u-borderUserColorLight" data-duration-target="minutes">
         <option value="0">0</option>
         <option value="1">1</option>
@@ -1447,7 +1447,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
         <option value="58">58</option>
         <option value="59">59</option>
       </select>
-    </spann></spann></div>
+    </div>
   </div>
   <button type="button" class="PollingCardComposer-remove u-textUserColor">
     <span>投票を削除</span>
@@ -3565,11 +3565,10 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
         </div>
       </div>
   </div>
-  
-  <div class="PermalinkOverlay PermalinkOverlay-with-background " id="permalink-overlay"
-    style="display: block;">
+
+  <div v-show="showOverlay" class="PermalinkOverlay PermalinkOverlay-with-background " id="permalink-overlay" style="display: none">
       <div class="PermalinkProfile-dismiss modal-close-fixed">
-        <span class="Icon Icon--close"></span>
+        <span @click="closeOverlay" class="Icon Icon--close"></span>
       </div>
       <button class="PermalinkOverlay-next PermalinkOverlay-button u-posFixed js-next" type="button">
         <span class="Icon Icon--caretLeft Icon--large"></span>
@@ -4203,7 +4202,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
             <option value="6">6</option>
             <option value="7">7</option>
           </select>
-          <spann class="PollingCardComposer-customDuration--hoursLabel">時間
+          <span class="PollingCardComposer-customDuration--hoursLabel">時間</span>
           <select class="PollingCardComposer-customDuration--hours u-borderUserColorLight" data-duration-target="hours">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -4230,7 +4229,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
             <option value="22">22</option>
             <option value="23">23</option>
           </select>
-          <spann class="PollingCardComposer-customDuration--minutesLabel">分
+          <span class="PollingCardComposer-customDuration--minutesLabel">分</span>
           <select class="PollingCardComposer-customDuration--minutes u-borderUserColorLight" data-duration-target="minutes">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -4293,7 +4292,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
             <option value="58">58</option>
             <option value="59">59</option>
           </select>
-        </spann></spann></div>
+        </div>
       </div>
       <button type="button" class="PollingCardComposer-remove u-textUserColor">
         <span>投票を削除</span>
@@ -4759,6 +4758,12 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
   <script src="node_modules/vue/dist/vue.js"></script>
   <script src="node_modules/kuromoji/build/kuromoji.js"></script>
   <script src="index.js"></script>
+
+  <style>
+    .PermalinkOverlay {
+      display: block;
+    }
+  </style>
 
 
 <style>@keyframes TwitterVideoPlayerBufferingAnimation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style></body></html>

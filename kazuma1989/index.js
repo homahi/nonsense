@@ -1,13 +1,16 @@
 const app = new Vue({
   el: '#app',
   data: {
-    tweet: ''
+    tweet: '',
+    showOverlay: false,
   },
   methods: {
     update(event) {
       this.tweet = event.target.innerText;
     },
     submit() {
+      this.openOverlay();
+
       const path = shuffle(tokenizer.tokenize(this.tweet).filter(({ word_type }) => word_type === 'KNOWN'));
       console.log(path);
 
@@ -15,12 +18,20 @@ const app = new Vue({
       const noun = path.find(({ pos }) => pos === '名詞');
       const verb = path.find(({ pos }) => pos === '動詞');
       console.log(`${adjective.basic_form}${noun.basic_form}が${verb.basic_form}ことができない人に対して不謹慎だと思います`);
-    }
+    },
+    openOverlay() {
+      this.showOverlay = true;
+    },
+    closeOverlay() {
+      this.showOverlay = false;
+    },
   }
 });
 
 let tokenizer = {
-  tokenize() { }
+  tokenize() {
+    return [];
+  },
 };
 kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict' }).build((err, _tokenizer) => {
   // tokenizer is ready
