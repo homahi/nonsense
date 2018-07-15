@@ -2,18 +2,83 @@
 <html lang="ja" data-scribe-reduced-action-queue="true" style="font-size: 15px;">
   <head><style id="react-ui-hover-underline">.__rui_hover_underline:hover { text-decoration: underline !important; }</style><style id="react-native-stylesheet"></style><style id="react-native-modality">:focus { outline: none; }</style>
     
+<style>
+    /* Global svg style overrides the overflow. Added svg for specificity */
+    svg.RadialCounter {
+      margin-bottom: -4px;
+      overflow: visible;
+      transform: rotate(-90deg);
+    }
+
+    .RadialCounter--safe {
+      stroke: #1da1f2;
+    }
+
+    .RadialCounter--warn {
+      stroke: #ffad1f;
+    }
+
+    .RadialCounter--danger {
+      stroke: #e0245e;
+    }
+
+    .RadialCounter-progressUnderlay {
+      stroke: #ccd6dd;
+    }
+
+    @keyframes RadialCounterPulse {
+      0% { stroke-width:2 }
+      50% { stroke-width: 4; }
+      100% { stroke-width: 2; }
+    }
+
+    .RadialCounter--danger.RadialCounter--pulse,
+    .RadialCounter--warn.RadialCounter--pulse {
+      animation: RadialCounterPulse 0.3s ease-in-out;
+      animation-iteration-count: 1;
+    }
+  </style>
+<style>
+        /* Global svg style overrides the overflow. Added svg for specificity */
+        svg.RadialCounter {
+          margin-bottom: -4px;
+          overflow: visible;
+          transform: rotate(-90deg);
+        }
     
+        .RadialCounter--safe {
+          stroke: #1da1f2;
+        }
     
+        .RadialCounter--warn {
+          stroke: #ffad1f;
+        }
     
+        .RadialCounter--danger {
+          stroke: #e0245e;
+        }
     
+        .RadialCounter-progressUnderlay {
+          stroke: #ccd6dd;
+        }
     
+        @keyframes RadialCounterPulse {
+          0% { stroke-width:2 }
+          50% { stroke-width: 4; }
+          100% { stroke-width: 2; }
+        }
     
+        .RadialCounter--danger.RadialCounter--pulse,
+        .RadialCounter--warn.RadialCounter--pulse {
+          animation: RadialCounterPulse 0.3s ease-in-out;
+          animation-iteration-count: 1;
+        }
+      </style>
+
   <meta charset="utf-8">
     <script async="" src="//www.google-analytics.com/analytics.js"></script><script nonce="">
       !function(){window.initErrorstack||(window.initErrorstack=[]),window.onerror=function(r,i,n,o,t){r.indexOf("Script error.")>-1||window.initErrorstack.push({errorMsg:r,url:i,lineNumber:n,column:o,errorObj:t})}}();
     </script>
-  
-  
 
 <script id="bouncer_terminate_iframe" nonce="">
   if (window.top != window) {
@@ -649,7 +714,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
     document.body.className=document.body.className+" "+document.body.getAttribute("data-fouc-class-names");
   </script>
 
-<div id="app">
+<div id="app" style="height: 100%">
   <div id="doc" style="overflow: hidden" data-at-shortcutkeys="{&quot;n&quot;:&quot;\u65b0\u3057\u3044\u30c4\u30a4\u30fc\u30c8&quot;,&quot;l&quot;:&quot;\u3044\u3044\u306d&quot;,&quot;r&quot;:&quot;\u8fd4\u4fe1&quot;,&quot;t&quot;:&quot;\u30ea\u30c4\u30a4\u30fc\u30c8&quot;,&quot;m&quot;:&quot;\u30c0\u30a4\u30ec\u30af\u30c8\u30e1\u30c3\u30bb\u30fc\u30b8&quot;,&quot;u&quot;:&quot;\u30e6\u30fc\u30b6\u30fc\u3092\u30df\u30e5\u30fc\u30c8&quot;,&quot;b&quot;:&quot;\u30e6\u30fc\u30b6\u30fc\u3092\u30d6\u30ed\u30c3\u30af&quot;,&quot;Enter&quot;:&quot;\u30c4\u30a4\u30fc\u30c8\u306e\u8a73\u7d30\u3092\u958b\u304f&quot;,&quot;o&quot;:&quot;\u753b\u50cf\u3092\u958b\u304f&quot;,&quot;/&quot;:&quot;\u691c\u7d22&quot;,&quot;CmdEnter&quot;:&quot;\u30c4\u30a4\u30fc\u30c8\u3059\u308b&quot;,&quot;?&quot;:&quot;\u3053\u306e\u30e1\u30cb\u30e5\u30fc&quot;,&quot;j&quot;:&quot;\u6b21\u306e\u30c4\u30a4\u30fc\u30c8&quot;,&quot;k&quot;:&quot;\u524d\u306e\u30c4\u30a4\u30fc\u30c8&quot;,&quot;Space&quot;:&quot;\u30da\u30fc\u30b8\u30c0\u30a6\u30f3&quot;,&quot;.&quot;:&quot;\u65b0\u3057\u3044\u30c4\u30a4\u30fc\u30c8\u3092\u8aad\u307f\u8fbc\u3080&quot;,&quot;gh&quot;:&quot;\u30db\u30fc\u30e0&quot;,&quot;go&quot;:&quot;\u30e2\u30fc\u30e1\u30f3\u30c8&quot;,&quot;gn&quot;:&quot;\u901a\u77e5&quot;,&quot;gr&quot;:&quot;@\u30c4\u30a4\u30fc\u30c8&quot;,&quot;gp&quot;:&quot;\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb&quot;,&quot;gl&quot;:&quot;\u3044\u3044\u306d&quot;,&quot;gi&quot;:&quot;\u30ea\u30b9\u30c8&quot;,&quot;gm&quot;:&quot;\u30e1\u30c3\u30bb\u30fc\u30b8&quot;,&quot;gs&quot;:&quot;\u8a2d\u5b9a&quot;,&quot;gu&quot;:&quot;\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u306b\u79fb\u52d5\u2026&quot;}" class="route-home">
       <div class="topbar js-topbar">
 
@@ -1197,42 +1262,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <div class="js-character-counter">
   <div class="js-countdown-counter tweet-counter CountdownCounter"></div>
   <svg class="RadialCounter js-radial-counter" height="20" width="20">
-  <style>
-    /* Global svg style overrides the overflow. Added svg for specificity */
-    svg.RadialCounter {
-      margin-bottom: -4px;
-      overflow: visible;
-      transform: rotate(-90deg);
-    }
-
-    .RadialCounter--safe {
-      stroke: #1da1f2;
-    }
-
-    .RadialCounter--warn {
-      stroke: #ffad1f;
-    }
-
-    .RadialCounter--danger {
-      stroke: #e0245e;
-    }
-
-    .RadialCounter-progressUnderlay {
-      stroke: #ccd6dd;
-    }
-
-    @keyframes RadialCounterPulse {
-      0% { stroke-width:2 }
-      50% { stroke-width: 4; }
-      100% { stroke-width: 2; }
-    }
-
-    .RadialCounter--danger.RadialCounter--pulse,
-    .RadialCounter--warn.RadialCounter--pulse {
-      animation: RadialCounterPulse 0.3s ease-in-out;
-      animation-iteration-count: 1;
-    }
-  </style>
+  
   <circle class="RadialCounter-progressUnderlay" cx="50%" cy="50%" r="8" fill="none" stroke-width="1"></circle>
   <circle class="js-progress-circle RadialCounter--safe" cx="50%" cy="50%" r="8" fill="none" stroke-width="2" style="stroke-dashoffset: 49.7628; stroke-dasharray: 50.2655;">
   </circle>
@@ -4020,42 +4050,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
               <div class="js-character-counter">
       <div class="js-countdown-counter tweet-counter CountdownCounter"></div>
       <svg class="RadialCounter js-radial-counter" height="20" width="20">
-      <style>
-        /* Global svg style overrides the overflow. Added svg for specificity */
-        svg.RadialCounter {
-          margin-bottom: -4px;
-          overflow: visible;
-          transform: rotate(-90deg);
-        }
-    
-        .RadialCounter--safe {
-          stroke: #1da1f2;
-        }
-    
-        .RadialCounter--warn {
-          stroke: #ffad1f;
-        }
-    
-        .RadialCounter--danger {
-          stroke: #e0245e;
-        }
-    
-        .RadialCounter-progressUnderlay {
-          stroke: #ccd6dd;
-        }
-    
-        @keyframes RadialCounterPulse {
-          0% { stroke-width:2 }
-          50% { stroke-width: 4; }
-          100% { stroke-width: 2; }
-        }
-    
-        .RadialCounter--danger.RadialCounter--pulse,
-        .RadialCounter--warn.RadialCounter--pulse {
-          animation: RadialCounterPulse 0.3s ease-in-out;
-          animation-iteration-count: 1;
-        }
-      </style>
+      
       <circle class="RadialCounter-progressUnderlay" cx="50%" cy="50%" r="8" fill="none" stroke-width="1"></circle>
       <circle class="js-progress-circle RadialCounter--safe" cx="50%" cy="50%" r="8" fill="none" stroke-width="2" style="stroke-dashoffset: 50.2655; stroke-dasharray: 50.2655;">
       </circle>
