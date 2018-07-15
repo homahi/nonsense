@@ -3,6 +3,18 @@ const app = new Vue({
   data: {
     tweet: '',
     showOverlay: false,
+    reply: 0,
+    retweet: 10000,
+    like: 200,
+  },
+  filters: {
+    number(value) {
+      if (!value || !value.toLocaleString) {
+        return value;
+      }
+
+      return value.toLocaleString();
+    }
   },
   methods: {
     update(event) {
@@ -25,7 +37,7 @@ const app = new Vue({
     closeOverlay() {
       this.showOverlay = false;
     },
-  }
+  },
 });
 
 let tokenizer = {

@@ -3596,9 +3596,9 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
       </div>
   </div>
 
-  <div v-show="showOverlay" class="PermalinkOverlay PermalinkOverlay-with-background " id="permalink-overlay" style="display: none">
+  <div v-show="showOverlay" @click.self="closeOverlay" class="PermalinkOverlay PermalinkOverlay-with-background " id="permalink-overlay" style="display: none">
       <div class="PermalinkProfile-dismiss modal-close-fixed">
-        <span @click="closeOverlay" class="Icon Icon--close"></span>
+        <span class="Icon Icon--close"></span>
       </div>
       <button class="PermalinkOverlay-next PermalinkOverlay-button u-posFixed js-next" type="button">
         <span class="Icon Icon--caretLeft Icon--large"></span>
@@ -3807,12 +3807,12 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
     <ul class="stats" aria-label="リツイートとお気に入りに登録されました">
         <li class="js-stat-count js-stat-retweets stat-count" aria-hidden="true">
           <a tabindex="0" role="button" data-tweet-stat-count="6" data-compact-localized-count="6" class="request-retweeted-popup" data-activity-popup-title="6件のリツイート">
-    <strong>6</strong>件のリツイート      </a>
+    <strong>{{ retweet | number }}</strong>件のリツイート      </a>
         </li>
     
         <li class="js-stat-count js-stat-favorites stat-count" aria-hidden="true">
           <a tabindex="0" role="button" data-tweet-stat-count="45" data-compact-localized-count="45" class="request-favorited-popup" data-activity-popup-title="45 いいね">
-    <strong>45</strong>件のいいね      </a>
+    <strong>{{ like | number }}</strong>件のいいね      </a>
         </li>
     
       <li class="avatar-row js-face-pile-container">
@@ -3885,7 +3885,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">返信</span>
         </div>
           <span class="ProfileTweet-actionCount ">
-            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">2</span>
+            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ reply | number }}</span>
           </span>
       </button>
     </div>
@@ -3897,7 +3897,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">リツイート</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">6</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ retweet | number }}</span>
       </span>
     
       </button><button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
@@ -3906,7 +3906,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">リツイート済み</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">6</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ retweet | number }}</span>
       </span>
     
       </button>
@@ -3921,7 +3921,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">いいね</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">45</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ like | number }}</span>
       </span>
     
       </button><button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
@@ -3931,7 +3931,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">「いいね」しました</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">45</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ like | number }}</span>
       </span>
     
       </button>
