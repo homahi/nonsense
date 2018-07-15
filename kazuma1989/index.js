@@ -1,10 +1,13 @@
 const app = new Vue({
-  el: '#permalink-overlay',
+  el: '#app',
   data: {
     tweet: ''
   },
   methods: {
-    onSubmit() {
+    update(event) {
+      this.tweet = event.target.innerText;
+    },
+    submit() {
       const path = shuffle(tokenizer.tokenize(this.tweet).filter(({ word_type }) => word_type === 'KNOWN'));
       console.log(path);
 
