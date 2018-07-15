@@ -1,5 +1,5 @@
 const app = new Vue({
-  el: '#app',
+  el: '#permalink-overlay',
   data: {
     tweet: ''
   },
