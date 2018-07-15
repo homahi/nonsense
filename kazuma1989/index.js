@@ -3,17 +3,23 @@ const app = new Vue({
   data: {
     tweet: '',
     showOverlay: false,
-    reply: 0,
-    retweet: 10000,
-    like: 200,
+    retweetCount: 0,
+    likeCount: 0,
+    replyList: [],
+  },
+  computed: {
+    replyCount() {
+      return this.replyList.length;
+    }
   },
   filters: {
     number(value) {
-      if (!value || !value.toLocaleString) {
+      if (value && value.toLocaleString) {
+        return value.toLocaleString();
+      }
+      else {
         return value;
       }
-
-      return value.toLocaleString();
     }
   },
   methods: {
@@ -29,7 +35,15 @@ const app = new Vue({
       const adjective = path.find(({ pos }) => pos === '連体詞' || pos === '形容詞');
       const noun = path.find(({ pos }) => pos === '名詞');
       const verb = path.find(({ pos }) => pos === '動詞');
-      console.log(`${adjective.basic_form}${noun.basic_form}が${verb.basic_form}ことができない人に対して不謹慎だと思います`);
+
+      const message = `${adjective.basic_form}${noun.basic_form}が${verb.basic_form}ことができない人に対して不謹慎だと思います`;
+      console.log(message);
+
+      this.replyList.push({
+        fullname: 'アンチしゅまい',
+        username: 'anti_shumai',
+        message,
+      });
     },
     openOverlay() {
       this.showOverlay = true;
@@ -45,10 +59,9 @@ let tokenizer = {
     return [];
   },
 };
-kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict' }).build((err, _tokenizer) => {
+kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict' }).build((_, _tokenizer) => {
   // tokenizer is ready
   tokenizer = _tokenizer;
-  app.tweet = '昔々、あるところにおじいさんとおばあさんがいました';
 });
 
 function shuffle(array) {

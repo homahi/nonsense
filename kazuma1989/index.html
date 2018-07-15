@@ -3597,7 +3597,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
   </div>
 
   <div v-show="showOverlay" @click.self="closeOverlay" class="PermalinkOverlay PermalinkOverlay-with-background " id="permalink-overlay" style="display: none">
-      <div class="PermalinkProfile-dismiss modal-close-fixed">
+      <div @click="closeOverlay" class="PermalinkProfile-dismiss modal-close-fixed">
         <span class="Icon Icon--close"></span>
       </div>
       <button class="PermalinkOverlay-next PermalinkOverlay-button u-posFixed js-next" type="button">
@@ -3807,12 +3807,12 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
     <ul class="stats" aria-label="リツイートとお気に入りに登録されました">
         <li class="js-stat-count js-stat-retweets stat-count" aria-hidden="true">
           <a tabindex="0" role="button" data-tweet-stat-count="6" data-compact-localized-count="6" class="request-retweeted-popup" data-activity-popup-title="6件のリツイート">
-    <strong>{{ retweet | number }}</strong>件のリツイート      </a>
+    <strong>{{ retweetCount | number }}</strong>件のリツイート      </a>
         </li>
     
         <li class="js-stat-count js-stat-favorites stat-count" aria-hidden="true">
           <a tabindex="0" role="button" data-tweet-stat-count="45" data-compact-localized-count="45" class="request-favorited-popup" data-activity-popup-title="45 いいね">
-    <strong>{{ like | number }}</strong>件のいいね      </a>
+    <strong>{{ likeCount | number }}</strong>件のいいね      </a>
         </li>
     
       <li class="avatar-row js-face-pile-container">
@@ -3885,7 +3885,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">返信</span>
         </div>
           <span class="ProfileTweet-actionCount ">
-            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ reply | number }}</span>
+            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ replyCount | number }}</span>
           </span>
       </button>
     </div>
@@ -3897,7 +3897,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">リツイート</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ retweet | number }}</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ retweetCount | number }}</span>
       </span>
     
       </button><button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
@@ -3906,7 +3906,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">リツイート済み</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ retweet | number }}</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ retweetCount | number }}</span>
       </span>
     
       </button>
@@ -3921,7 +3921,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">いいね</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ like | number }}</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ likeCount | number }}</span>
       </span>
     
       </button><button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
@@ -3931,7 +3931,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           <span class="u-hiddenVisually">「いいね」しました</span>
         </div>
           <span class="ProfileTweet-actionCount">
-        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ like | number }}</span>
+        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">{{ likeCount | number }}</span>
       </span>
     
       </button>
@@ -4419,7 +4419,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
       
       ">
         <ol class="stream-items">
-          <li class="js-stream-item stream-item stream-item
+          <li v-for="reply in replyList" class="js-stream-item stream-item stream-item
     " data-item-id="1018359850164580365" id="stream-item-tweet-1018359850164580365" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{},&quot;tweet_ids&quot;:&quot;1018359850164580365&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">
         
     
@@ -4446,7 +4446,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
               <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/studytatsuhiko" data-user-id="2350933166">
           <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/995223812835655680/e-4tm0A9_bigger.jpg" alt="">
         <span class="FullNameGroup">
-          <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">スミレ</strong><span>‏</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>studytatsuhiko</b></span></a>
+          <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">{{ reply.fullname }}</strong><span>‏</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>{{ reply.username }}</b></span></a>
     
             
             <small class="time">
@@ -4513,27 +4513,12 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
             <div class="ReplyingToContextBelowAuthor" data-aria-label-part="">
         返信先: <a class="pretty-link js-user-profile-link" href="/shuumai" data-user-id="54882396" rel="noopener" dir="ltr"><span class="username u-dir u-textTruncate" dir="ltr">@<b>shuumai</b></span></a>さん
     
-    
-    
     </div>
     
-    
-          
             <div class="js-tweet-text-container">
-      <p class="TweetTextSize  js-tweet-text tweet-text" lang="ja" data-aria-label-part="0">甲板広いんだね</p>
+      <p class="TweetTextSize  js-tweet-text tweet-text" lang="ja" data-aria-label-part="0">{{ reply.message }}</p>
     </div>
     
-    
-          
-    
-          
-            
-    
-    
-          
-          
-    
-          
           <div class="stream-item-footer">
       
           <div class="ProfileTweet-actionCountList u-hiddenVisually">
