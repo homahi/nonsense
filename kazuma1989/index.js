@@ -18,6 +18,9 @@ const app = new Vue({
     replyList: [],
   },
   computed: {
+    disabled() {
+      return this.tweet.length === 0 || this.tweet.length >= 141;
+    },
     replyCount() {
       return this.replyList.length;
     },
