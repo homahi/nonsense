@@ -1,6 +1,14 @@
 const app = new Vue({
   el: '#app',
   data: {
+    profile: {
+      avatar: faker.image.avatar(),
+      fullname: faker.name.firstName(),
+      username: `${faker.lorem.word()}_${faker.random.number()}`,
+      cardStyle: {
+        backgroundImage: `url(${faker.image.image()})`,
+      },
+    },
     tweet: '',
     showOverlay: false,
     retweetCount: 0,

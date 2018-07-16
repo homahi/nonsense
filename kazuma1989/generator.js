@@ -23,14 +23,14 @@ function generateReply(tweet) {
   });
 
   faker.locale = Math.random() < 0.5 ? 'ja' : 'en';
-  const fullname = faker.name.firstName();
   const avatar = faker.image.avatar();
+  const fullname = faker.name.firstName();
   const username = `${faker.lorem.word()}_${faker.random.number()}`;
 
   return {
+    avatar,
     fullname,
     username,
-    avatar,
     message,
   };
 }
