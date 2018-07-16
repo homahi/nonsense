@@ -16,15 +16,22 @@ function generateReply(tweet) {
   const adjective = path.find(({ pos }) => pos === '連体詞' || pos === '形容詞');
   const noun = path.find(({ pos }) => pos === '名詞');
   const verb = path.find(({ pos, pos_detail_1 }) => pos === '動詞' && pos_detail_1 === '自立');
+  const message = generateMessage({
+    adjective,
+    noun,
+    verb,
+  });
+
+  faker.locale = Math.random() < 0.5 ? 'ja' : 'en';
+  const fullname = faker.name.firstName();
+  const avatar = faker.image.avatar();
+  const username = `${faker.lorem.word()}_${faker.random.number()}`;
 
   return {
-    fullname: 'アンチしゅまい',
-    username: 'anti_shumai',
-    message: generateMessage({
-      adjective,
-      noun,
-      verb,
-    }),
+    fullname,
+    username,
+    avatar,
+    message,
   };
 }
 

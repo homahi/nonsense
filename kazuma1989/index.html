@@ -4407,7 +4407,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
           
           <div class="stream-item-header">
               <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/studytatsuhiko" data-user-id="2350933166">
-          <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/995223812835655680/e-4tm0A9_bigger.jpg" alt="">
+          <img class="avatar js-action-profile-avatar" :src="reply.avatar" alt="">
         <span class="FullNameGroup">
           <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">{{ reply.fullname }}</strong><span>‏</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>{{ reply.username }}</b></span></a>
     
@@ -4700,6 +4700,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
   <script src="generator.js"></script>
   <script src="index.js"></script>
 
