@@ -42,10 +42,7 @@ const app = new Vue({
     submit() {
       this.openOverlay();
 
-      clearInterval(this._timer);
-      this._timer = setInterval(() => {
-        app.replyList.unshift(generateReply(this.tweet));
-      }, 500);
+      startReplying();
     },
     openOverlay() {
       this.showOverlay = true;
@@ -55,3 +52,19 @@ const app = new Vue({
     },
   },
 });
+
+const RETWEET_RATIO = 0.15;
+const LIKE_RATIO = 0.2;
+const DELTA_MAX = 983;
+
+function startReplying() {
+  const timing = Array(100).fill(60 * 1000).map(v => v * Math.random());
+  timing.forEach(t => {
+    setTimeout(() => {
+      app.replyList.unshift(generateReply(app.tweet));
+
+      app.retweetCount += Math.min(Math.round(app.retweetCount * RETWEET_RATIO), DELTA_MAX) || 1;
+      app.likeCount += Math.min(Math.round(app.retweetCount * LIKE_RATIO), DELTA_MAX) || 1;
+    }, t);
+  });
+}
