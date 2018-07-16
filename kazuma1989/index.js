@@ -10,7 +10,7 @@ const app = new Vue({
   computed: {
     replyCount() {
       return this.replyList.length;
-    }
+    },
   },
   filters: {
     number(value) {
@@ -20,7 +20,7 @@ const app = new Vue({
       else {
         return value;
       }
-    }
+    },
   },
   methods: {
     update(event) {
@@ -28,22 +28,7 @@ const app = new Vue({
     },
     submit() {
       this.openOverlay();
-
-      const path = shuffle(tokenizer.tokenize(this.tweet).filter(({ word_type }) => word_type === 'KNOWN'));
-      console.log(path);
-
-      const adjective = path.find(({ pos }) => pos === '連体詞' || pos === '形容詞');
-      const noun = path.find(({ pos }) => pos === '名詞');
-      const verb = path.find(({ pos }) => pos === '動詞');
-
-      const message = `${adjective.basic_form}${noun.basic_form}が${verb.basic_form}ことができない人に対して不謹慎だと思います`;
-      console.log(message);
-
-      this.replyList.push({
-        fullname: 'アンチしゅまい',
-        username: 'anti_shumai',
-        message,
-      });
+      this.replyList.push(generateReply(this.tweet));
     },
     openOverlay() {
       this.showOverlay = true;
@@ -53,24 +38,3 @@ const app = new Vue({
     },
   },
 });
-
-let tokenizer = {
-  tokenize() {
-    return [];
-  },
-};
-kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict' }).build((_, _tokenizer) => {
-  // tokenizer is ready
-  tokenizer = _tokenizer;
-});
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const randomIndex = Math.floor(Math.random() * i);
-    const temp = array[i];
-    array[i] = array[randomIndex];
-    array[randomIndex] = temp;
-  }
-
-  return array;
-}

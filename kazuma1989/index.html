@@ -1573,8 +1573,8 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
 </button>
 
         </span>
-      <button class="tweet-action EdgeButton EdgeButton--primary js-tweet-btn" type="button">
-  <span @click="submit" class="button-text tweeting-text">
+      <button @click="submit" class="tweet-action EdgeButton EdgeButton--primary js-tweet-btn" type="button">
+  <span class="button-text tweeting-text">
     ツイート
   </span>
   <span class="button-text replying-text">返信</span>
@@ -1598,63 +1598,26 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
 
   <div class="stream">
       <ol class="stream-items js-navigable-stream" id="stream-items-id">
-        
-    
-
-    
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
 
       <li class="js-stream-item stream-item stream-item
 " data-item-id="1018370085059100672" id="stream-item-tweet-1018370085059100672" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedOrganicTweet&quot;,&quot;controller_data&quot;:&quot;DAABCgABAAAAAAECQAEAAA==&quot;},&quot;tweet_ids&quot;:&quot;1018370085059100672&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">
-  
-
 
 <div class="tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable dismissible-content
      original-tweet js-original-tweet
-    
-    
      dismissible-content
 " data-tweet-id="1018370085059100672" data-item-id="1018370085059100672" data-permalink-path="/karashichan/status/1018370085059100672" data-conversation-id="1018370085059100672" data-tweet-nonce="1018370085059100672-745cb526-012a-4a59-9b09-47c79f0293c0" data-tweet-stat-initialized="true" data-screen-name="karashichan" data-name="からし" data-user-id="96057835" data-you-follow="true" data-follows-you="false" data-you-block="false" data-reply-to-users-json="[{&quot;id_str&quot;:&quot;96057835&quot;,&quot;screen_name&quot;:&quot;karashichan&quot;,&quot;name&quot;:&quot;\u304b\u3089\u3057&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;\u304b\u3089\u3057&quot;,&quot;emojified_text_as_html&quot;:&quot;\u304b\u3089\u3057&quot;}}]" data-disclosure-type="" data-component-context="suggest_ranked_organic_tweet">
 
   <div class="context">
-    
-    
   </div>
 
   <div class="content">
-    
 
-    
-
-    
     <div class="stream-item-header">
         <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/karashichan" data-user-id="96057835">
     <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/570951994/k_bigger.jpg" alt="">
   <span class="FullNameGroup">
     <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">からし</strong><span>‏</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>karashichan</b></span></a>
 
-      
       <small class="time">
 <a href="/karashichan/status/1018370085059100672" class="tweet-timestamp js-permalink js-nav js-tooltip" title="14:42 - 2018年7月15日" data-conversation-id="1018370085059100672"><span class="_timestamp js-short-timestamp js-relative-timestamp" data-time="1531633323" data-time-ms="1531633323000" data-long-form="true" aria-hidden="true">14分</span><span class="u-hiddenVisually" data-aria-label-part="last">14分前</span></a>
 </small>
@@ -4737,6 +4700,7 @@ background-image: url(https://abs.twimg.com/a/1531260751/img/t1/grey_header_web.
 
   <script src="node_modules/vue/dist/vue.js"></script>
   <script src="node_modules/kuromoji/build/kuromoji.js"></script>
+  <script src="generator.js"></script>
   <script src="index.js"></script>
 
   <style>
