@@ -1,6 +1,6 @@
 faker.locale = Math.random() < 0.5 ? 'ja' : 'en';
 
-new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     profile: {
@@ -38,7 +38,11 @@ new Vue({
     },
     submit() {
       this.openOverlay();
-      this.replyList.unshift(generateReply(this.tweet));
+
+      clearInterval(this._timer);
+      this._timer = setInterval(() => {
+        app.replyList.unshift(generateReply(this.tweet));
+      }, 500);
     },
     openOverlay() {
       this.showOverlay = true;

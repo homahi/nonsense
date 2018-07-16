@@ -11,15 +11,19 @@ kuromoji.builder({ dicPath: 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict' }
 function generateReply(tweet) {
   const rawPath = tokenizer.tokenize(tweet);
   console.log(rawPath);
-  const path = shuffle(rawPath.filter(({ word_type }) => word_type === 'KNOWN'));
 
-  const adjective = path.find(({ pos }) => pos === '連体詞' || pos === '形容詞');
-  const noun = path.find(({ pos }) => pos === '名詞');
-  const verb = path.find(({ pos, pos_detail_1 }) => pos === '動詞' && pos_detail_1 === '自立');
+  const knownList = shuffle(rawPath.filter(e => e.word_type === 'KNOWN'));
+  const adjectiveList = knownList.filter(e => e.pos === '連体詞' || e.pos === '形容詞').map(e => e.basic_form);
+  const nounList = knownList.filter(e => e.pos === '名詞').map(e => e.basic_form);
+  const verbList = knownList.filter(e => e.pos === '動詞' && e.pos_detail_1 === '自立').map(e => e.basic_form);
+
+  const unknownList = shuffle(rawPath.filter(e => e.word_type === 'UNKNOWN'));
+
   const message = generateMessage({
-    adjective,
-    noun,
-    verb,
+    adjectiveList,
+    nounList,
+    verbList,
+    unknownList,
   });
 
   faker.locale = Math.random() < 0.5 ? 'ja' : 'en';
@@ -36,11 +40,12 @@ function generateReply(tweet) {
 }
 
 function generateMessage({
-  adjective = {},
-  noun = {},
-  verb = {},
+  adjectiveList,
+  nounList,
+  verbList,
+  unknownList,
 }) {
-  const message = `${adjective.basic_form || ''}${noun.basic_form || ''}が${verb.basic_form}ことができない人に対して不謹慎だと思います`;
+  const message = `${adjectiveList[0]}${nounList[0]}が${verbList[0]}ことができない人に対して不謹慎だと思います`;
   return message;
 }
 
