@@ -9,20 +9,32 @@ kuromoji.builder({ dicPath: 'node_modules/kuromoji/dict' }).build((_, tokenizer)
 });
 
 function generateReply(tweet) {
-  const path = shuffle(tokenizer.tokenize(tweet).filter(({ word_type }) => word_type === 'KNOWN'));
-  console.log(path);
+  const rawPath = tokenizer.tokenize(tweet);
+  console.log(rawPath);
+  const path = shuffle(rawPath.filter(({ word_type }) => word_type === 'KNOWN'));
 
   const adjective = path.find(({ pos }) => pos === '連体詞' || pos === '形容詞');
   const noun = path.find(({ pos }) => pos === '名詞');
-  const verb = path.find(({ pos }) => pos === '動詞');
-
-  const message = `${adjective.basic_form}${noun.basic_form}が${verb.basic_form}ことができない人に対して不謹慎だと思います`;
+  const verb = path.find(({ pos, pos_detail_1 }) => pos === '動詞' && pos_detail_1 === '自立');
 
   return {
     fullname: 'アンチしゅまい',
     username: 'anti_shumai',
-    message,
+    message: generateMessage({
+      adjective,
+      noun,
+      verb,
+    }),
   };
+}
+
+function generateMessage({
+  adjective = {},
+  noun = {},
+  verb = {},
+}) {
+  const message = `${adjective.basic_form || ''}${noun.basic_form || ''}が${verb.basic_form}ことができない人に対して不謹慎だと思います`;
+  return message;
 }
 
 function shuffle(array) {

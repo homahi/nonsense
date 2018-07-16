@@ -28,7 +28,7 @@ const app = new Vue({
     },
     submit() {
       this.openOverlay();
-      this.replyList.push(generateReply(this.tweet));
+      this.replyList.unshift(generateReply(this.tweet));
     },
     openOverlay() {
       this.showOverlay = true;
