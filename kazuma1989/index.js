@@ -1,4 +1,6 @@
-const app = new Vue({
+faker.locale = Math.random() < 0.5 ? 'ja' : 'en';
+
+new Vue({
   el: '#app',
   data: {
     profile: {

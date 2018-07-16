@@ -3019,9 +3019,9 @@ window.top.postMessage({'bouncer': true, 'event': 'complete'}, '*');
           <div class="content clearfix">
             <div class="permalink-header">
                 <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/shuumai" data-user-id="54882396">
-          <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/303370559/shuumai_bigger.jpg" alt="">
+          <img class="avatar js-action-profile-avatar" :src="profile.avatar" alt="">
         <span class="FullNameGroup">
-          <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">しゅうまい君</strong><span>‏</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>shuumai</b></span></a>
+          <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">{{ profile.fullname }}</strong><span>‏</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>{{ profile.username }}</b></span></a>
     
               
               <small class="time">
@@ -3355,7 +3355,7 @@ window.top.postMessage({'bouncer': true, 'event': 'complete'}, '*');
         <div class="inline-reply-tweetbox swift">
               <form class="t1-form tweet-form condensed is-reply" method="post" target="tweet-post-iframe" action="//upload.twitter.com/i/tweet/create_with_media.iframe" enctype="multipart/form-data" data-poll-composer-rows="3" data-previous-status-id-in-thread="1018344418594525184">
     
-      <div class="reply-users">返信先: <button type="button" class="btn-link reply-users-btn js-tooltip" data-original-title="返信先のアカウントを選択"><span class="username u-dir u-textTruncate" dir="ltr">@<b>shuumai</b></span>さん</button>
+      <div class="reply-users">返信先: <button type="button" class="btn-link reply-users-btn js-tooltip" data-original-title="返信先のアカウントを選択"><span class="username u-dir u-textTruncate" dir="ltr">@<b>{{ profile.username }}</b></span>さん</button>
     </div>
     
       <div class="tweet-content">
@@ -3900,7 +3900,7 @@ window.top.postMessage({'bouncer': true, 'event': 'complete'}, '*');
           
     
             <div class="ReplyingToContextBelowAuthor" data-aria-label-part="">
-        返信先: <a class="pretty-link js-user-profile-link" href="/shuumai" data-user-id="54882396" rel="noopener" dir="ltr"><span class="username u-dir u-textTruncate" dir="ltr">@<b>shuumai</b></span></a>さん
+        返信先: <a class="pretty-link js-user-profile-link" href="/shuumai" data-user-id="54882396" rel="noopener" dir="ltr"><span class="username u-dir u-textTruncate" dir="ltr">@<b>{{ profile.username }}</b></span></a>さん
     
     </div>
     
