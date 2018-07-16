@@ -12,17 +12,21 @@ function generateReply(tweet) {
   const rawPath = tokenizer.tokenize(tweet);
   console.log(rawPath);
 
+  const basicForm = e => e.basic_form;
   const knownList = shuffle(rawPath.filter(e => e.word_type === 'KNOWN'));
-  const adjectiveList = knownList.filter(e => e.pos === '連体詞' || e.pos === '形容詞').map(e => e.basic_form);
-  const nounList = knownList.filter(e => e.pos === '名詞').map(e => e.basic_form);
-  const verbList = knownList.filter(e => e.pos === '動詞' && e.pos_detail_1 === '自立').map(e => e.basic_form);
+  const adjectiveList = knownList.filter(e => e.pos === '連体詞' || e.pos === '形容詞').map(basicForm);
+  const nounList = knownList.filter(e => e.pos === '名詞').map(basicForm);
+  const verbList = knownList.filter(e => e.pos === '動詞' && e.pos_detail_1 === '自立').map(basicForm);
+  const interjectionList = knownList.filter(e => e.pos === '感動詞').map(basicForm);
 
-  const unknownWordList = shuffle(rawPath.filter(e => e.word_type === 'UNKNOWN')).map(e => e.surface_form);
+  const surfaceForm = e => e.surface_form;
+  const unknownWordList = shuffle(rawPath.filter(e => e.word_type === 'UNKNOWN')).map(surfaceForm);
 
   const message = generateMessage({
     adjectiveList,
     nounList,
     verbList,
+    interjectionList,
     unknownWordList,
   });
 
