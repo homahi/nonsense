@@ -17,13 +17,13 @@ function generateReply(tweet) {
   const nounList = knownList.filter(e => e.pos === '名詞').map(e => e.basic_form);
   const verbList = knownList.filter(e => e.pos === '動詞' && e.pos_detail_1 === '自立').map(e => e.basic_form);
 
-  const unknownList = shuffle(rawPath.filter(e => e.word_type === 'UNKNOWN'));
+  const unknownWordList = shuffle(rawPath.filter(e => e.word_type === 'UNKNOWN')).map(e => e.surface_form);
 
   const message = generateMessage({
     adjectiveList,
     nounList,
     verbList,
-    unknownList,
+    unknownWordList,
   });
 
   faker.locale = Math.random() < 0.5 ? 'ja' : 'en';
