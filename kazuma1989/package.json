@@ -1,13 +1,9 @@
 {
   "name": "kazuma1989",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "license": "MIT",
   "devDependencies": {
     "serve": "^9.2.0"
-  },
-  "dependencies": {
-    "kuromoji": "^0.1.2",
-    "vue": "^2.5.16"
   }
 }
