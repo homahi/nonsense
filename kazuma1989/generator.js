@@ -3,7 +3,7 @@ window.tokenizer = {
     return [];
   },
 };
-kuromoji.builder({ dicPath: 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict' }).build((_, tokenizer) => {
+kuromoji.builder({ dicPath: 'dict' }).build((_, tokenizer) => {
   // tokenizer is ready
   window.tokenizer = tokenizer;
 });
