@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <h1>今日の原野Slack語録</h1>
+
+</head>
+
+<body>
+    <!--チャンネルIDのリスト-->
+    <p>Slackチャンネルを選択</p>
+    <form name="form1">
+        <select name="channel">
+    <option value="C4A3ZMUGM">book</option>
+    <option value="C4L99EG5S">cook</option>
+    <option value="C4A13BFU2">general</option>
+    <option value="C7SL9ECHM">hackthon</option>
+    <option value="C49JZ82BS">it</option>
+    <option value="C4C6M08AZ">life</option>
+    <option value="C5V40T3KJ">movie</option>
+    <option value="C88TRGK2L">news</option>
+    <option value="C4A13BGAW">random</option>
+    <option value="C56L4TD6Y">study</option>
+</select>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>
+        function escapeHTML(val) {
+            return $('<div />').text(val).html();
+        }
+
+
+        function getNippo() {
+            //チャンネルIDを取得
+            var num = document.form1.channel.selectedIndex;
+            var str = document.form1.channel.options[num].value;
+            //API呼び出し時のパラメータ作成 ※認証情報はマスキングすること※
+            var url = "https://slack.com/api/channels.history?token=" +
+                "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" + "&" +
+                "channel=" +
+                str + "&" +
+                "count=1000&pretty=1";
+            //Slackチャンネルに投稿されたメッセージを取得する
+            $.getJSON(url, function(data) {
+                var len = data.messages.length;
+                var tbodyObj = $("#nippotbl_tbody");
+                var harano_message = [];
+                tbodyObj.find("*").remove();
+                for (var i = len - 1; i >= 0; i--) {
+                    var outputtext = data.messages[i].text;
+
+                    if (data.messages[i].attachments != null) {
+
+                        for (var j = 0; j < data.messages[i].attachments.length; j++) {
+                            attachtext = data.messages[i].attachments[j].text;
+                            outputtext = outputtext + attachtext;
+                        }
+
+                    }
+                    //原野の投稿のみを表示する
+                    if (data.messages[i].user === 'U49AJV8KT') {
+                        harano_message.push(outputtext);
+                    }
+                }
+                //原野投稿メッセージ配列の長さを取得
+                var len_harano = harano_message.length;
+                //表示する投稿をランダムにするために、ランダム値を生成
+                rand = Math.floor(Math.random() * len_harano);
+                //画面時表示するメッセージを作成
+                var tr = $('<tr>');
+                tr.append('<td>' + escapeHTML(harano_message[rand]) + '</td>');
+                tbodyObj.append(tr);
+            });
+        }
+    </script>
+    <form>
+        <input type="button" value="取得する" onclick="getNippo()" />
+    </form>
+
+    <table id="nippotbl">
+        <th>言葉</th>
+        <tbody id="nippotbl_tbody">
+        </tbody>
+    </table>
+
+</body>
+
+</html>
