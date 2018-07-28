@@ -1,0 +1,15 @@
+.word {
+  width: 30px;
+}
+
+.base {
+  position: relative;
+  width: 30px;
+}
+
+.maru {
+  width: 30px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}

@@ -1,0 +1,18 @@
+<h3>渡なべ衰弱</h3>
+<div class="header">
+  <app-word [word]="correctWord"></app-word>
+</div>
+<div class="button-wrapper">
+  <button class="start" (click)="start()"> START </button>
+</div>
+<div class="counter">
+  {{ count }}
+</div>
+<div id="grid" *ngIf="words.length != 0">
+  <ul>
+    <li *ngFor="let word of words">
+      <app-word [word]="word" [correctId]="correctWord.id" (correct)="correct()"></app-word>
+    </li>
+  </ul>
+
+</div>

@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  width: 40px;
+  margin: auto;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#grid {
+  width: 80%;
+  margin: auto;
+}
+
+li {
+  margin: 5px;
+  float: left;
+  list-style: none;
+}
+
+.start {
+  width: 40px;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+.counter {
+  width: 50px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font: 15px;
+  color: red;
+  margin: auto;
+}
