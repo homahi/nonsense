@@ -1,5 +1,3 @@
-// 2018-07-27 沓掛T3活動 14:00~
-
 function isJSON(){
     var string = document.forms.json.textbox.value
     var date = new Date(string)
