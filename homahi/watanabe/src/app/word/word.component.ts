@@ -17,6 +17,9 @@ export class WordComponent implements OnInit {
   @Output()
   correct = new EventEmitter();
 
+  @Output()
+  error = new EventEmitter();
+
   success = false;
   fail = false;
 
@@ -32,6 +35,7 @@ export class WordComponent implements OnInit {
       this.correct.emit();
     } else {
       console.log('false');
+      this.error.emit();
       this.fail = true;
     }
   }

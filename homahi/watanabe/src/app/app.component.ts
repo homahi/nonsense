@@ -13,12 +13,14 @@ export class AppComponent {
   repository = new WoredRepository();
   count = 0;
   timer;
+  errorCount = 0;
   constructor() {
     const repository = new WoredRepository();
   }
 
   start() {
     this.count = 0;
+    this.errorCount = 0;
     this.timer = setInterval(() => {
       this.count += 1;
     }, 1000);
@@ -28,5 +30,8 @@ export class AppComponent {
 
   correct() {
     clearInterval(this.timer);
+  }
+  error() {
+    this.errorCount += 1;
   }
 }

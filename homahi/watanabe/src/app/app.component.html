@@ -6,12 +6,13 @@
   <button class="start" (click)="start()"> START </button>
 </div>
 <div class="counter">
-  {{ count }}
+  <span class="timer"> Time: {{ count }} </span>
+  <span class="error"> Error: {{ errorCount }} </span>
 </div>
 <div id="grid" *ngIf="words.length != 0">
   <ul>
     <li *ngFor="let word of words">
-      <app-word [word]="word" [correctId]="correctWord.id" (correct)="correct()"></app-word>
+      <app-word [word]="word" [correctId]="correctWord.id" (correct)="correct()" (error)="error()"></app-word>
     </li>
   </ul>
 
