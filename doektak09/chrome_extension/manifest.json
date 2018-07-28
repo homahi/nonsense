@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Git 2 JSON",
+    "version": "1.0",
+    "description": "設計図共有サイトのデータの一部を怪しげな形式に変換するChrome拡張",
+    "browser_action": {
+      "default_title": "",
+      "default_icon": "JSON_19.png",
+      "default_popup": "popup.html"
+    },
+    "background":{
+        "scripts":["js/background.js"]
+    },
+    "content_scripts" :[
+        {
+          "matches" : [
+            "https://github.com/*"
+          ],
+          "js" : ["js/content_script.js"],
+          "run_at" : "document_idle",
+          "all_frames" : true
+        }
+      ]
+  }
